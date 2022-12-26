@@ -1,0 +1,10 @@
+@import '../../style/theme.scss';
+
+.container {
+  padding: 2px 8px;
+  background: $gray400;
+  border-radius: 50px;
+  color: $gray200;
+  font-size: .75rem;
+  font-weight: bold;
+}
