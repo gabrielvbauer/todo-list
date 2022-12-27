@@ -3,25 +3,21 @@ import { useState } from 'react';
 import styles from './style.module.scss';
 
 export interface TaskProps {
-  id?: number;
+  id: number;
   text: string;
   isCompleted?: boolean;
+  onCheckTask?: (taskID: number) => void;
+  onDeleteTask?: (taskID: number) => void;
 }
 
 function Task(props: TaskProps) {
-  const [isCompleted, setIsCompleted] = useState(props.isCompleted);
-
-  function handleCheckbox() {
-    setIsCompleted(!isCompleted);
-  }
-
   return (
-    <div className={`${styles.container} ${isCompleted ? styles.completed : ''}`}>
+    <div className={`${styles.container} ${props.isCompleted ? styles.completed : ''}`}>
       <div>
-        <input type="checkbox" title='completitionStatus' onClick={handleCheckbox} checked={isCompleted} />
+        <input type="checkbox" title='completitionStatus' onChange={() => props.onCheckTask!(props.id)} checked={props.isCompleted} />
       </div>
       <p>{props.text}</p>
-      <button title='Remover'>
+      <button title='Remover' onClick={() => props.onDeleteTask!(props.id)}>
         <Trash/>
       </button>
     </div>
